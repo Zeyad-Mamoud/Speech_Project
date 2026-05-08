@@ -7,9 +7,9 @@ from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 
 # load model + encoder
-model = load_model("emotion_model.h5")
+model = load_model("emotion_model_enhanced.h5")
 
-with open("label_encoder.pkl", "rb") as f:
+with open("label_encoder_enhanced.pkl", "rb") as f:
     le = pickle.load(f)
 
 st.title("🎤 Speech Emotion Recognition")
