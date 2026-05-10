@@ -14,7 +14,7 @@ model = load_model("emotion_model_enhanced.h5")
 with open("label_encoder_enhanced.pkl", "rb") as f:
     le = pickle.load(f)
 
-st.title("🎤 Speech Emotion Recognition")
+st.title("Speech Emotion Recognition")
 
 # Create tabs for single file and batch processing
 tab1, tab2 = st.tabs(["Single File", "Batch Processing (Folder)"])
@@ -69,7 +69,7 @@ with tab1:
             f.write(uploaded_file.read())
         
         emotion = predict_emotion("temp.wav")
-        st.success(f"🎯 Predicted Emotion: **{emotion}**")
+        st.success(f"Predicted Emotion: **{emotion}**")
 
 with tab2:
     st.subheader("Batch Process WAV/FLAC Files from Folder")
@@ -108,7 +108,7 @@ with tab2:
                 
                 # Display results as table
                 df = pd.DataFrame(results)
-                st.subheader("📊 Results")
+                st.subheader("Results")
                 st.dataframe(df, use_container_width=True)
                 
                 # Option to download results
@@ -120,6 +120,6 @@ with tab2:
                     mime="text/csv"
                 )
             else:
-                st.warning("❌ No WAV files found in the specified folder")
+                st.warning("No WAV files found in the specified folder")
         else:
-            st.error("❌ Invalid folder path. Please check the path and try again")
+            st.error("Invalid folder path. Please check the path and try again")
