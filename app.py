@@ -81,11 +81,6 @@ def load_audio(path, sr=TARGET_SR, duration=DURATION):
     return y.astype(np.float32), sr
 
 
-def trim_silence(y, top_db=30):
-    trimmed, _ = librosa.effects.trim(y, top_db=top_db)
-    return trimmed if len(trimmed) > 0 else y
-
-
 def fix_audio_length(y, target_samples=TARGET_SAMPLES):
     if len(y) < target_samples:
         y = np.pad(y, (0, target_samples - len(y)), mode="constant")
@@ -96,8 +91,6 @@ def fix_audio_length(y, target_samples=TARGET_SAMPLES):
 
 def preprocess_audio(path, sr=TARGET_SR, duration=DURATION, trim=True):
     y, sr = load_audio(path, sr=sr, duration=duration)
-    if trim:
-        y = trim_silence(y)
     y = fix_audio_length(y, int(sr * duration))
     return y, sr
 
